@@ -1,15 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Router, Route, Link } from 'react-router-dom';
 
-import { LandingPage } from "./pages/index";
+import { LandingPage, HomePage } from "./pages/index";
+
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <LandingPage />
+        <Route exact path="/" component={LandingPage}/>
+        <Route exact path="/search" component={HomePage}/>
       </div>
     </BrowserRouter>
     
