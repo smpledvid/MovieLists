@@ -10,18 +10,22 @@ import { useHistory } from "react-router-dom";
 
 function LandingPage(props) {
     const [movieName, setMovieName] = useState('');
+
     const history = useHistory();
+    const axios = require('axios');
 
-    const handleMovieSearch = () => {
-      console.log('Searching for ' + movieName);
-      history.push('/search', {
-        'movieName': movieName
-      });
+    const handleMovieSearch = () => {      
+      try {
+        axios.get('http://www.omdbapi.com/?apikey=5aac9b1a&t=' + movieName)
+          .then(res => {
+            history.push('/search', {
+              'movieData': res.data
+            });
+          });
+      } catch(error) {
+        console.error('Failed getting movie data:', error);
+      }
     };
-
-    // const fetchMovieData = async () => {
-    //   const result = await axios()
-    // };
 
     const handleKeyPress = (event) => {
       if(event.key === 'Enter') {

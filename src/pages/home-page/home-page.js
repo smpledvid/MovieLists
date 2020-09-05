@@ -2,15 +2,21 @@ import React, { useState, useEffect } from 'react';
 import './home-page.scss';
 
 function HomePage(props) {
-  const [movieName, setMovieName] = useState('');
+  const [movieData, setMovieData] = useState({});
+
 
   useEffect(() => {
-    setMovieName(props.location.state.movieName);
+    setMovieData(props.location.state.movieData);
   }, [props]);
 
   return (
     <div className="container">
-      Home Page : {movieName}
+      <div className="row">
+        Home Page : {movieData["Title"]}
+      </div>
+      <div className="row">
+        <img src={movieData["Poster"]} alt=""/>
+      </div>
     </div>
   );
 }
