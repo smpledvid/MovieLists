@@ -5,6 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 
+
+// OMBD API KEY: 5aac9b1a
+
 function LandingPage(props) {
     const [movieName, setMovieName] = useState('');
     const history = useHistory();
@@ -15,6 +18,10 @@ function LandingPage(props) {
         'movieName': movieName
       });
     };
+
+    // const fetchMovieData = async () => {
+    //   const result = await axios()
+    // };
 
     const handleKeyPress = (event) => {
       if(event.key === 'Enter') {
