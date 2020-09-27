@@ -34,14 +34,24 @@ function LandingPage(props) {
     };
 
     return (
-      <div className="container">
-        <Typography>Movie Rec.</Typography>
-        <TextField 
-          variant="outlined" 
-          margin="dense"
-          onChange={e => setMovieName(e.target.value)}
-          onKeyDown={e => handleKeyPress(e)}
-        />
+      <div className="container container-wrapper">
+        <div className="search-wrapper">
+          <div className="row">
+            <div className="col-sm d-flex justify-content-center">
+              <Typography variant="h3">Movie Rec.</Typography>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm d-flex justify-content-center">
+              <TextField 
+                variant="outlined" 
+                margin="dense"
+                onChange={e => setMovieName(e.target.value)}
+                onKeyDown={e => handleKeyPress(e)}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
 }
