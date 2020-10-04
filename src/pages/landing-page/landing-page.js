@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
+import TheatersSharpIcon from '@material-ui/icons/TheatersSharp';
 
 
 // OMBD API KEY: 5aac9b1a
@@ -38,7 +39,10 @@ function LandingPage(props) {
         <div className="search-wrapper">
           <div className="row">
             <div className="col-sm d-flex justify-content-center">
-              <Typography variant="h3">Movie Rec.</Typography>
+              <Typography variant="h3">
+                <span>Movie Rec</span>
+                <span><TheatersSharpIcon className="movie-icon"/></span>
+              </Typography>
             </div>
           </div>
           <div className="row">
