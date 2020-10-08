@@ -1,0 +1,20 @@
+.container-wrapper {
+
+    .title-wrapper {
+        text-align: center;
+        font-size: 3em;
+        font-weight: bold;
+    }
+
+    .descriptors {
+        font-weight: bold;
+    }
+
+    .ratings-wrapper {
+        text-align: center;
+
+        .ratings-chip-wrapper {
+            margin: 0.3em;
+        }
+    }
+}
