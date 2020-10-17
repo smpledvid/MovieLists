@@ -1,9 +1,16 @@
 .container-wrapper {
+    .poster-wrapper {
+        text-align: center;
+    }
 
     .title-wrapper {
         text-align: center;
         font-size: 3em;
         font-weight: bold;
+    }
+
+    .description {
+        text-align: left;
     }
 
     .descriptors {

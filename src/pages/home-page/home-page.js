@@ -27,41 +27,45 @@ function HomePage(props) {
 
   return (
     <div className="container container-wrapper">
-      <div className="row">
-        <div className="col-lg-4">
-          <img src={movieData["Poster"]} alt=""/>
-        </div> 
-        <div className="col-lg-8">
-          <div className="title-wrapper">{movieData["Title"]}</div>
-          <div>Rated: {movieData["Rated"]}</div>
-          <div>Release Date: {movieData["Released"]}</div>
-          <div>Actors : {movieData["Actors"]}</div>
-          <div>Director: {movieData["Director"]}</div>
-          <div>Plot: {movieData["Plot"]}</div>
-          <div>Genre: {movieData["Genre"]}</div>
+      <div className="container-child-wrapper">
+        <div className="row">
+          <div className="col-lg-4 poster-wrapper">
+            <img src={movieData["Poster"]} alt=""/>
+          </div> 
+          <div className="col-lg-8">
+            <div className="description">
+              <div className="title-wrapper">{movieData["Title"]}</div>
+              <div>Rated: {movieData["Rated"]}</div>
+              <div>Release Date: {movieData["Released"]}</div>
+              <div>Actors : {movieData["Actors"]}</div>
+              <div>Director: {movieData["Director"]}</div>
+              <div>Plot: {movieData["Plot"]}</div>
+              <div>Genre: {movieData["Genre"]}</div>
 
-          { movieData["Ratings"] && 
-            <div className="ratings-wrapper">
-              <span className="ratings-chip-wrapper">
-                <Chip 
-                  label={`(IMDB : ${movieData["Ratings"][0]['Value']})`} 
-                  onClick={() => handleRatingsChipClick('imdb')}
-                /> 
-              </span>
-              <span className="ratings-chip-wrapper">
-                <Chip 
-                  label={`(Rotten Tomatoes : ${movieData["Ratings"][1]['Value']})`}
-                  onClick={() => handleRatingsChipClick('rotten tomatoes')}
-                />
-              </span>
-              <span className="ratings-chip-wrapper">
-                <Chip 
-                  label={`(Metacritic : ${movieData["Ratings"][2]['Value']})`}
-                  onClick={() => handleRatingsChipClick('metacritic')}
-                />
-              </span>
+              { movieData["Ratings"] && 
+                <div className="ratings-wrapper">
+                  <span className="ratings-chip-wrapper">
+                    <Chip 
+                      label={`(IMDB : ${movieData["Ratings"][0]['Value']})`} 
+                      onClick={() => handleRatingsChipClick('imdb')}
+                    /> 
+                  </span>
+                  <span className="ratings-chip-wrapper">
+                    <Chip 
+                      label={`(Rotten Tomatoes : ${movieData["Ratings"][1]['Value']})`}
+                      onClick={() => handleRatingsChipClick('rotten tomatoes')}
+                    />
+                  </span>
+                  <span className="ratings-chip-wrapper">
+                    <Chip 
+                      label={`(Metacritic : ${movieData["Ratings"][2]['Value']})`}
+                      onClick={() => handleRatingsChipClick('metacritic')}
+                    />
+                  </span>
+                </div>
+              }
             </div>
-          }
+          </div>
         </div>
       </div>
     </div>

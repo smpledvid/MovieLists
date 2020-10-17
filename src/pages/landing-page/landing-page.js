@@ -36,7 +36,7 @@ function LandingPage(props) {
 
     return (
       <div className="container container-wrapper">
-        <div className="search-wrapper">
+        <div className="container-child-wrapper">
           <div className="row">
             <div className="col-sm d-flex justify-content-center">
               <Typography variant="h3">

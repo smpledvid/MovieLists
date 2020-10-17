@@ -1,9 +1,14 @@
 .container-wrapper {
+    width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
+    display: table;
+    text-align: center;
+    
+    .container-child-wrapper {
+        display: table-cell;
+        vertical-align: middle;
+    }
+    
     .movie-icon {
         font-size: 1.2em;
     }
