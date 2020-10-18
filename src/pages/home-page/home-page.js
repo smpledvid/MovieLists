@@ -1,10 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import Chip from '@material-ui/core/Chip';
+import { useHistory } from "react-router-dom";
 import './home-page.scss';
 
-function HomePage(props) {
-  const [movieData, setMovieData] = useState({});
+import Chip from '@material-ui/core/Chip';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import { makeStyles } from '@material-ui/core/styles';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
+function HomePage(props) {
+  const axios = require('axios');
+  const classes = useStyles();
+  const history = useHistory();
+
+  const [movieData, setMovieData] = useState({});
+  const [movieSearchName, setMovieSearchName] = useState('');
 
   useEffect(() => {
     setMovieData(props.location.state.movieData);
@@ -25,45 +53,90 @@ function HomePage(props) {
     }
   }
 
-  return (
-    <div className="container container-wrapper">
-      <div className="container-child-wrapper">
-        <div className="row">
-          <div className="col-lg-4 poster-wrapper">
-            <img src={movieData["Poster"]} alt=""/>
-          </div> 
-          <div className="col-lg-8">
-            <div className="description">
-              <div className="title-wrapper">{movieData["Title"]}</div>
-              <div>Rated: {movieData["Rated"]}</div>
-              <div>Release Date: {movieData["Released"]}</div>
-              <div>Actors : {movieData["Actors"]}</div>
-              <div>Director: {movieData["Director"]}</div>
-              <div>Plot: {movieData["Plot"]}</div>
-              <div>Genre: {movieData["Genre"]}</div>
+  const handleMovieSearch = () => {      
+    try {
+      axios.get('http://www.omdbapi.com/?apikey=5aac9b1a&t=' + movieSearchName)
+        .then(res => {
+          history.push('/search', {
+            'movieData': res.data
+          });
+        });
+    } catch(error) {
+      console.error('Failed getting movie data:', error);
+    }
+  };
 
-              { movieData["Ratings"] && 
-                <div className="ratings-wrapper">
-                  <span className="ratings-chip-wrapper">
-                    <Chip 
-                      label={`(IMDB : ${movieData["Ratings"][0]['Value']})`} 
-                      onClick={() => handleRatingsChipClick('imdb')}
-                    /> 
-                  </span>
-                  <span className="ratings-chip-wrapper">
-                    <Chip 
-                      label={`(Rotten Tomatoes : ${movieData["Ratings"][1]['Value']})`}
-                      onClick={() => handleRatingsChipClick('rotten tomatoes')}
-                    />
-                  </span>
-                  <span className="ratings-chip-wrapper">
-                    <Chip 
-                      label={`(Metacritic : ${movieData["Ratings"][2]['Value']})`}
-                      onClick={() => handleRatingsChipClick('metacritic')}
-                    />
-                  </span>
-                </div>
-              }
+  const handleKeyPress = (event) => {
+    if(event.key === 'Enter') {
+      handleMovieSearch();
+    }
+  };
+
+  return (
+    <div>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+           <TextField 
+                variant="outlined" 
+                margin="dense"
+                placeholder="Search..."
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                }}
+                onChange={e => setMovieSearchName(e.target.value)}
+                onKeyDown={e => handleKeyPress(e)}
+              />
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
+    
+      <div className="container container-wrapper">
+        <div className="container-child-wrapper">
+        
+          <div className="row">
+            <div className="col-lg-4 poster-wrapper">
+              <img src={movieData["Poster"]} alt=""/>
+            </div> 
+            <div className="col-lg-8">
+              <div className="description">
+                <div className="title-wrapper">{movieData["Title"]}</div>
+                <div>Rated: {movieData["Rated"]}</div>
+                <div>Release Date: {movieData["Released"]}</div>
+                <div>Actors : {movieData["Actors"]}</div>
+                <div>Director: {movieData["Director"]}</div>
+                <div>Plot: {movieData["Plot"]}</div>
+                <div>Genre: {movieData["Genre"]}</div>
+
+                { movieData["Ratings"] && 
+                  <div className="ratings-wrapper">
+                    <span className="ratings-chip-wrapper">
+                      <Chip 
+                        label={`(IMDB : ${movieData["Ratings"][0]['Value']})`} 
+                        onClick={() => handleRatingsChipClick('imdb')}
+                      /> 
+                    </span>
+                    <span className="ratings-chip-wrapper">
+                      <Chip 
+                        label={`(Rotten Tomatoes : ${movieData["Ratings"][1]['Value']})`}
+                        onClick={() => handleRatingsChipClick('rotten tomatoes')}
+                      />
+                    </span>
+                    <span className="ratings-chip-wrapper">
+                      <Chip 
+                        label={`(Metacritic : ${movieData["Ratings"][2]['Value']})`}
+                        onClick={() => handleRatingsChipClick('metacritic')}
+                      />
+                    </span>
+                  </div>
+                }
+              </div>
             </div>
           </div>
         </div>
