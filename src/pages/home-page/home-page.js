@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
+import DrawerComponent from "./components/drawer.component";
 import './home-page.scss';
 
 import Chip from '@material-ui/core/Chip';
@@ -48,6 +49,7 @@ function HomePage(props) {
 
   const [movieData, setMovieData] = useState({});
   const [movieSearchName, setMovieSearchName] = useState('');
+  const [drawerTrigger, setDrawerTrigger] = useState();
 
   useEffect(() => {
     setMovieData(props.location.state.movieData);
@@ -87,31 +89,39 @@ function HomePage(props) {
     }
   };
 
+  const handleOpenDrawer = () => {
+    setDrawerTrigger(!drawerTrigger);
+    console.log('opening drawer' , drawerTrigger);
+  };
+
   return (
     <div className="page-wrapper">
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleOpenDrawer}>
             <MenuIcon />
           </IconButton>
-           <TextField 
-                variant="outlined" 
-                margin="dense"
-                placeholder="Search..."
-                className={classes.search}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  ),
-                }}
-                onChange={e => setMovieSearchName(e.target.value)}
-                onKeyDown={e => handleKeyPress(e)}
-              />
+            <TextField 
+              variant="outlined" 
+              margin="dense"
+              placeholder="Search..."
+              className={classes.search}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+              onChange={e => setMovieSearchName(e.target.value)}
+              onKeyDown={e => handleKeyPress(e)}
+            />
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
+      <DrawerComponent
+        drawerTrigger={drawerTrigger}
+      ></DrawerComponent>
       <div className="container-wrapper">
         <div className="container container-child-wrapper">
           <div className="row">
