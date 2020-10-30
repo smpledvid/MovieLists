@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 
+import Slider from "react-slick";
+
 import Drawer from '@material-ui/core/Drawer';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
@@ -20,7 +22,17 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
+
+
 const drawerWidth = 540;
+const carouselSettings = {
+  className: "center",
+  centerMode: true,
+  infinite: true,
+  centerPadding: "20px",
+  slidesToShow: 3,
+  speed: 500
+};
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -97,41 +109,33 @@ function DrawerComponent(props) {
     }
 
     return (
-        <div>
-            <Drawer
-                className={classes.drawer}
-                variant="persistent"
-                anchor="left"
-                open={drawerOpen}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-            >
-                <div className={classes.drawerHeader}>
-                <IconButton onClick={() => handleChangingDrawerState(false)}>
-                    {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                </IconButton>
-                </div>
-                <Divider />
-                <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                    <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-                </List>
-                <Divider />
-                <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                    <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-                </List>
-            </Drawer>
-        </div>
+      <div>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={drawerOpen}
+          classes={{
+              paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={() => handleChangingDrawerState(false)}>
+                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          <div>
+            <Slider {...carouselSettings}>
+              <div><h3>1</h3></div>
+              <div><h3>2</h3></div>
+              <div><h3>3</h3></div>
+              <div><h3>4</h3></div>
+              <div><h3>5</h3></div>
+              <div><h3>6</h3></div>
+            </Slider>
+          </div>
+        </Drawer>
+      </div>
     )
 }
 
