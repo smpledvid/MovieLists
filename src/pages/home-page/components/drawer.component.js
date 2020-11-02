@@ -97,8 +97,10 @@ function DrawerComponent(props) {
     const [drawerOpen, setOpen] = useState(false);
 
     useEffect(() => {
+      if(props.drawerTrigger !== undefined) {
         handleDrawerStateToggle(props.drawerTrigger);
-    }, [props]);
+      }
+    }, [props.drawerTrigger]);
 
     const handleChangingDrawerState = (open) => {
         setOpen(open);

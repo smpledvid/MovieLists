@@ -34,10 +34,6 @@ const useStyles = makeStyles((theme) => ({
     },
     marginLeft: 0,
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
-      width: 'auto',
-    },
   }
   
 }));
@@ -101,6 +97,7 @@ function HomePage(props) {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleOpenDrawer}>
             <MenuIcon />
           </IconButton>
+          <div className="input-wrapper">
             <TextField 
               variant="outlined" 
               margin="dense"
@@ -116,6 +113,7 @@ function HomePage(props) {
               onChange={e => setMovieSearchName(e.target.value)}
               onKeyDown={e => handleKeyPress(e)}
             />
+          </div>
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
@@ -142,19 +140,19 @@ function HomePage(props) {
                   <div className="ratings-wrapper">
                     <span className="ratings-chip-wrapper">
                       <Chip 
-                        label={`(IMDB : ${movieData["Ratings"][0]['Value']})`} 
+                        label={`(IMDB : ${movieData["Ratings"][0] ? movieData["Ratings"][0]['Value'] : 'N/A'})`} 
                         onClick={() => handleRatingsChipClick('imdb')}
                       /> 
                     </span>
                     <span className="ratings-chip-wrapper">
                       <Chip 
-                        label={`(Rotten Tomatoes : ${movieData["Ratings"][1]['Value']})`}
+                        label={`(Rotten Tomatoes : ${movieData["Ratings"][1] ? movieData["Ratings"][1]['Value'] : 'N/A'})`}
                         onClick={() => handleRatingsChipClick('rotten tomatoes')}
                       />
                     </span>
                     <span className="ratings-chip-wrapper">
                       <Chip 
-                        label={`(Metacritic : ${movieData["Ratings"][2]['Value']})`}
+                        label={`(Metacritic : ${movieData["Ratings"][2] ? movieData["Ratings"][2]['Value'] : 'N/A'})`}
                         onClick={() => handleRatingsChipClick('metacritic')}
                       />
                     </span>
