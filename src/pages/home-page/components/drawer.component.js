@@ -1,26 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
+import './drawer.scss';
 
 import Slider from "react-slick";
 
 import Drawer from '@material-ui/core/Drawer';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 
 
@@ -64,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
     },
     drawerPaper: {
       width: drawerWidth,
+      backgroundColor: 'lightgrey'
     },
     drawerHeader: {
       display: 'flex',
@@ -97,15 +87,15 @@ function DrawerComponent(props) {
     const [drawerOpen, setOpen] = useState(false);
 
     useEffect(() => {
-        handleDrawerStateToggle(props.drawerTrigger);
-    }, [props]);
+      handleDrawerStateToggle(props.drawerTrigger);
+    }, [props.drawerTrigger]);
 
     const handleChangingDrawerState = (open) => {
-        setOpen(open);
+      setOpen(open);
     };
 
     const handleDrawerStateToggle = () => {
-        setOpen(!drawerOpen);
+      setOpen(!drawerOpen);
     }
 
     return (
@@ -124,15 +114,19 @@ function DrawerComponent(props) {
                 {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
-          <div>
-            <Slider {...carouselSettings}>
-              <div><h3>1</h3></div>
-              <div><h3>2</h3></div>
-              <div><h3>3</h3></div>
-              <div><h3>4</h3></div>
-              <div><h3>5</h3></div>
-              <div><h3>6</h3></div>
-            </Slider>
+          <div className="carousel-wrapper">
+            <div className="carousel">
+              <Slider {...carouselSettings} >
+                <div className="mock-slider-item">
+                  <img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/>
+                </div>
+                <div className="mock-slider-item"><img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/></div>
+                <div className="mock-slider-item"><img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/></div>
+                <div className="mock-slider-item"><img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/></div>
+                <div className="mock-slider-item"><img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/></div>
+                <div className="mock-slider-item"><img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/></div>
+              </Slider>
+            </div>
           </div>
         </Drawer>
       </div>
