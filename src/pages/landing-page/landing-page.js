@@ -19,11 +19,18 @@ function LandingPage(props) {
       try {
         axios.get('http://www.omdbapi.com/?apikey=5aac9b1a&t=' + movieName)
           .then(res => {
-            history.push('/search', {
-              'movieData': res.data
-            });
+            if(res.data.Error) {
+              history.push('/error', {
+                'movieData': res.data
+              });
+            } else {
+              history.push('/search', {
+                'movieData': res.data
+              });
+            }
           });
       } catch(error) {
+        history.push('/error');
         console.error('Failed getting movie data:', error);
       }
     };

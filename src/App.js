@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { LandingPage, HomePage } from "./pages/index";
+import { LandingPage, HomePage, ErrorPage } from "./pages/index";
 import { ThemeProvider } from '@material-ui/core';
 import theme from './styles/material-ui-theme';
 
@@ -14,6 +14,7 @@ function App() {
         >
           <Route exact path="/" component={LandingPage}/>
           <Route exact path="/search" component={HomePage}/>
+          <Route exact path="/error" component={ErrorPage}/>
         </div>
       </BrowserRouter>
     </ThemeProvider>
