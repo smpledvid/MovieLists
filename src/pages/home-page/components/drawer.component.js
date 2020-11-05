@@ -12,13 +12,11 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 
-
-const drawerWidth = 540;
 const carouselSettings = {
   className: "center",
   centerMode: true,
   infinite: true,
-  centerPadding: "20px",
+  centerPadding: "50px",
   slidesToShow: 3,
   speed: 500
 };
@@ -27,20 +25,6 @@ const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
     },
-    appBar: {
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-    appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-      transition: theme.transitions.create(['margin', 'width'], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
     menuButton: {
       marginRight: theme.spacing(2),
     },
@@ -48,11 +32,11 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
     drawer: {
-      width: drawerWidth,
+      width: '100%',
       flexShrink: 0,
     },
     drawerPaper: {
-      width: drawerWidth,
+      width: '80%',
       backgroundColor: 'lightgrey'
     },
     drawerHeader: {
@@ -62,15 +46,6 @@ const useStyles = makeStyles((theme) => ({
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
       justifyContent: 'flex-end',
-    },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      marginLeft: -drawerWidth,
     },
     contentShift: {
       transition: theme.transitions.create('margin', {
@@ -108,7 +83,7 @@ function DrawerComponent(props) {
           anchor="left"
           open={drawerOpen}
           classes={{
-              paper: classes.drawerPaper,
+            paper: classes.drawerPaper,
           }}
         >
           <div className={classes.drawerHeader}>
@@ -122,11 +97,21 @@ function DrawerComponent(props) {
                 <div className="mock-slider-item">
                   <img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/>
                 </div>
-                <div className="mock-slider-item"><img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/></div>
-                <div className="mock-slider-item"><img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/></div>
-                <div className="mock-slider-item"><img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/></div>
-                <div className="mock-slider-item"><img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/></div>
-                <div className="mock-slider-item"><img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/></div>
+                <div className="mock-slider-item">
+                  <img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/>
+                </div>
+                <div className="mock-slider-item">
+                  <img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/>
+                </div>
+                <div className="mock-slider-item">
+                  <img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/>
+                </div>
+                <div className="mock-slider-item">
+                  <img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/>
+                </div>
+                <div className="mock-slider-item">
+                  <img src="https://m.media-amazon.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX300.jpg" alt=""/>
+                </div>
               </Slider>
             </div>
           </div>
